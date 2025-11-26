@@ -41,7 +41,7 @@ class BorrowerProfileEDA:
             n_unique = self.df[col].nunique(dropna=True)
             
             empty_dict = dict()
-            list_of_variables = ["columns_name", "dtype", "n_missing", "missing_pct", "n_unique"]
+            list_of_variables = ["column", "dtype", "n_missing", "missing_pct", "n_unique"]
             list_of_values = [columns_name, dtype, n_missing, missing_pct, n_unique]
             for var, val in zip(list_of_variables, list_of_values):
                 empty_dict[var] = val
