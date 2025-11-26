@@ -111,7 +111,7 @@ def borrower_eda_steps(eda: BorrowerProfileEDA) -> Dict[str, Callable[[], Any]]:
         - "default_by_purpose"
     """
     return {"structure": eda.structure_summary, "income": eda.income_summary, 
-            "freqs": lambda: eda.categorical_freqs(max_levels),
+            "freqs": lambda: eda.categorical_freqs(max_levels = 10),
             "default_by_home_ownership": lambda: eda.default_rate_by_category("home_ownership"),
             "default_by_purpose": lambda: eda.default_rate_by_category("purpose")}
 
@@ -130,5 +130,5 @@ def run_borrower_eda_pipeline(eda: BorrowerProfileEDA) -> Dict[str, Any]:
     """
     functions_dict = dict()
     for k,v in borrower_eda_steps(eda).items():
-        functions_dict[k] = v
+        functions_dict[k] = v()
     return functions_dict
